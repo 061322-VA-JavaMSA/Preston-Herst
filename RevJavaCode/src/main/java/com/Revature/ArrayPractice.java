@@ -10,6 +10,9 @@ public class ArrayPractice {
 		int[] var = {1,2, 3, 4, 5};
 		System.out.println(Arrays.toString(var));
 
+	
+		Integer i = new Integer(0);
+		System.out.println(i);
 	}
 
 }
