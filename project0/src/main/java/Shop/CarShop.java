@@ -1,4 +1,6 @@
 package Shop;
+
+import com.revature.util.*;
 import java.util.Scanner;
 
 public class CarShop {
@@ -30,13 +32,7 @@ public class CarShop {
 				System.out.print("password: ");
 				password = sc.next();	
 				
-				if (username.equals("customer")) {
-//					customerMenu();
-					System.out.println("customer");
-				}
-				else if(username.equals("employee")) {
-					System.out.println("employee");
-				}
+				
 			}
 			else if(userChoice == 2) {
 				
