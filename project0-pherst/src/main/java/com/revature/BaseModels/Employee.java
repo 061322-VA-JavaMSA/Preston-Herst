@@ -42,9 +42,10 @@ public class Employee {
 	
 	public static void printMenu() {
 		System.out.println("Employee Menu:");
-		System.out.println("1: View items in shop");
-		System.out.println("2: view pending orders");
+		System.out.println("1: Add or delete an item from shop");
+		System.out.println("2: Accept or decline pending orders");
 		System.out.println("3: View all payments");
+		System.out.println("4: return to login screen or exit program");
 	}
 	@Override
 	public String toString() {

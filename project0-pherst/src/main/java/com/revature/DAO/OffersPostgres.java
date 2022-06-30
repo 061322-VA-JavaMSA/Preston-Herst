@@ -22,7 +22,7 @@ public class OffersPostgres {
 		Offers of = null;
 		
 		try {
-			String viewPending = "SELECT offers.username, customers.employeeid, offers.carid, items.make, items.model, offers.offer, offers.status "
+			String viewPending = "SELECT offers.username, customers.customerid, offers.carid, items.make, items.model, offers.offer, offers.status "
 				+ "FROM ((offers INNER JOIN items ON offers.carid = items.carid) INNER JOIN customers ON offers.username = customers.username) ";
 			
 			view = cc.prepareStatement(viewPending);
@@ -30,8 +30,8 @@ public class OffersPostgres {
 			
 			while(rs.next()) {
 				of = new Offers();
+				of.setCustomerid((rs.getInt("customerid")));
 				of.setUsername(rs.getString("username"));
-				of.setEmployeeid((rs.getInt("employeeid")));
 				of.setCarid(rs.getInt("carid"));
 				of.setMake(rs.getString("make"));
 				of.setModel(rs.getString("model"));
@@ -68,4 +68,23 @@ public class OffersPostgres {
 		ps.setString(4, status);
 		ps.execute();	
 	}
+	
+	public static String retrieveOfferUsername(int carid, int customerid) throws SQLException {
+		
+		Offers offerUser = new Offers();
+		Connection conn = DBConnection.getSQLConnection();
+		PreparedStatement ps;
+		String selectUser = "SELECT username from offers where carid = (?) and customerid = (?)";
+		
+		ps = conn.prepareStatement(selectUser);
+		ps.setInt(1, carid);
+		ps.setInt(2, customerid);
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			offerUser.setUsername(rs.getString("username"));
+		}
+		return offerUser.getUsername();
+	}
+	
 }

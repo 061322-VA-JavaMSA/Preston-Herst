@@ -98,27 +98,35 @@ public class EmployeePostgres {
 				OffersPostgres.viewAllOffers();
 				System.out.println();
 				
-				System.out.println("Please enter the carID for the offer you would like to accept or decline");
+				System.out.println("Please enter the carID and customerID for the offer you would like to accept or decline");
 				System.out.print("carID: ");
 				int carID = sc.nextInt();
+				System.out.print("customerID: ");
+				int custID = sc.nextInt();
+				System.out.println();
 				
-				System.out.println("Would you like to accept or decline the offer?");
-				System.out.print("(accept or decline): ");
+				System.out.println("Would you like to accept or reject the offer?");
+				System.out.print("(accept or reject): ");
 				String option = sc.next();
 				
 				if(option.equals("accept")) {
+					
 					PreparedStatement ps;
-					String sold = "UPDATE offers SET status = (?) where carid = (?)";
+					String sold = "UPDATE offers SET status = (?) where carid = (?) and customerid = (?)";
 					ps = conn.prepareStatement(sold);
 					ps.setString(1, "Accepted");
 					ps.setInt(2, carID);
+					ps.setInt(3, custID);
 					ps.execute();
+					
+					SystemPostgres.rejectOtherOffers(carID, custID);
+					SystemPostgres.updateToOwned(carID, custID);
 				}
-				else if(option.equals("decline")) {
+				else if(option.equals("reject")) {
 					PreparedStatement ps;
 					String reject = "UPDATE offers SET status = (?) where carid = (?)";
 					ps = conn.prepareStatement(reject);
-					ps.setString(1, "Declined");
+					ps.setString(1, "Rejected");
 					ps.setInt(2, carID);
 					ps.execute();
 				}

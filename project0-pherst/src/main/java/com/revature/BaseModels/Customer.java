@@ -50,6 +50,7 @@ public class Customer {
 		System.out.println("2: Make an offer for a vehicle");
 		System.out.println("3: View items you own");
 		System.out.println("4: View remaining payments");
+		System.out.println("5: Return to login screen or exit program");
 	}
 	
 	

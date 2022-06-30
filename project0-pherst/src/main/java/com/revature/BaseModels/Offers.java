@@ -2,7 +2,7 @@ package com.revature.BaseModels;
 
 public class Offers {
 
-	private int employeeid;
+	private int customerid;
 	private String username;
 	private int carid;
 	private String make;
@@ -10,11 +10,11 @@ public class Offers {
 	private int offer;
 	private String status;
 	
-	public int getEmployeeid() {
-		return employeeid;
+	public int getCustomerid() {
+		return customerid;
 	}
-	public void setEmployeeid(int employeeid) {
-		this.employeeid = employeeid;
+	public void setCustomerid(int customerid) {
+		this.customerid = customerid;
 	}
 	public String getUsername() {
 		return username;
@@ -54,8 +54,12 @@ public class Offers {
 	}
 	@Override
 	public String toString() {
-		return "Offers [customer ID: " + employeeid + ", username: " + username + ", carID: " + carid + ", make: " + make
+		return "Offers [customer ID: " + customerid + ", username: " + username + ", carID: " + carid + ", make: " + make
 				+ ", model: " + model + ", offer: $" + offer + ", status: " + status + "]";
+	}
+	
+	public String paymentsToString() {
+		return"[customer ID:" + customerid + ", username: " + username + ", carID: " + carid + " payment: $" + offer +"]";
 	}
 	
 }
